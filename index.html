@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Baby Shower Invitation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        :root {
+            --pink-light: #ffe9f2;
+            --pink-main: #ffb3d1;
+            --pink-dark: #ff6fa3;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #ffe9f2 0, #ffffff 55%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 24px 16px;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 720px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            padding: 24px 20px 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative background shapes */
+        .card::before,
+        .card::after {
+            content: "";
+            position: absolute;
+            border-radius: 999px;
+            opacity: 0.25;
+            z-index: 0;
+        }
+
+        .card::before {
+            width: 180px;
+            height: 180px;
+            background: var(--pink-main);
+            top: -80px;
+            right: -60px;
+        }
+
+        .card::after {
+            width: 220px;
+            height: 220px;
+            background: var(--pink-light);
+            bottom: -110px;
+            left: -80px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--pink-light);
+            color: var(--pink-dark);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .hero-title {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .hero-tagline {
+            font-size: 0.98rem;
+            color: var(--text-main);
+        }
+
+        /* Sections */
+        .section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--pink-dark);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .section-body {
+            font-size: 1rem;
+        }
+
+        .datetime-main {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .datetime-sub {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .italic-style {
+            font-style: italic;
+        }
+
+        .location-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .location-address {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            white-space: pre-line;
+        }
+
+        /* Buttons */
+        .button-row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: none;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--pink-dark);
+            color: #ffffff;
+            box-shadow: 0 6px 14px rgba(255, 111, 163, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 9px 20px rgba(255, 111, 163, 0.5);
+            background: #ff4f93;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--pink-dark);
+            border: 1px solid var(--pink-dark);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .btn-outline:hover {
+            background: var(--pink-light);
+            transform: translateY(-1px);
+        }
+
+        /* Note */
+        .note {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Map Section */
+        .map-section {
+            margin-top: 24px;
+        }
+
+        .map-wrapper {
+            margin-top: 10px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #f3c8dc;
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 260px;
+            border: 0;
+        }
+
+        /* Small footer */
+        .footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 12px;
+        }
+
+        /* Desktop tweaks */
+        @media (min-width: 640px) {
+            body {
+                padding: 40px 24px;
+            }
+            .card {
+                padding: 32px 34px 34px;
+            }
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            .hero-tagline {
+                font-size: 1.05rem;
+            }
+            .button-row {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .map-iframe {
+                height: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="card">
+        <div class="content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-badge">It’s a girl!</div>
+                <h1 class="hero-title">Baby Shower for Baby Mikulik</h1>
+                <p class="hero-subtitle">Honouring Jackie &amp; Cory</p>
+                <p class="hero-tagline">Join us as we celebrate our little one on the way.</p>
+            </section>
+
+            <!-- Date & Time Section -->
+            <section class="section" id="datetime">
+                <div class="section-title">When</div>
+                <div class="section-body">
+                    <p class="datetime-main">Sunday, January 11, 2025</p>
+                    <p class="datetime-sub">12:00 PM &ndash; 5:00 PM</p>
+                </div>
+            </section>
+
+            <!-- Location Section -->
+            <section class="section" id="location">
+                <div class="section-title">Where</div>
+                <div class="section-body">
+                    <p class="location-name">Vista 429</p>
+                    <p class="location-address">
+                        429 Beaverhill Blvd
+                        Winnipeg, MB
+                    </p>
+                </div>
+            </section>
+
+            <!-- RSVP Section -->
+            <section class="section" id="rsvp">
+                <div class="section-title">RSVP</div>
+                <div class="section-body">
+                    <p class="datetime-sub">Kindly let us know if you can join us.</p>
+                    <div class="button-row">
+                        <a class="btn btn-primary" href="https://forms.gle/3VGvG9Tna38BHPnU6" target="_blank" rel="noopener noreferrer">
+                            RSVP Online
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Registry Section -->
+            <section class="section" id="registry">
+                <div class="section-title">Registry</div>
+                <div class="section-body">
+                    <p class="datetime-sub">Your love and support mean the world. Gifts are optional, but if you’d like, you can view our registries below.</p>
+                    <br>
+                    <p class="datetime-sub italic-style">In place of a card, we’d love a if you could bring and sign a children's book for our baby girl’s library.
+                    </p>
+                    <div class="button-row">
+                        <a class="btn btn-outline" href="https://example.com/registry1" target="_blank" rel="noopener noreferrer">
+                            Registry #1
+                        </a>
+                        <a class="btn btn-outline" href="https://example.com/registry2" target="_blank" rel="noopener noreferrer">
+                            Registry #2
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Optional Note Section -->
+            <section class="note" id="note">
+                <!-- Edit or replace this note as needed -->
+                Please arrive a few minutes early if you can. Street parking is available nearby. Kids are welcome!
+            </section>
+
+            <!-- Map Section -->
+            <section class="map-section" id="map">
+                <div class="section-title">Map</div>
+                <div class="section-body datetime-sub">
+                    Tap or click the map for directions.
+                </div>
+                <div class="map-wrapper">
+                    <!-- Replace the src with your own Google Maps embed link for the exact location -->
+                    <iframe
+                            class="map-iframe"
+                            loading="lazy"
+                            allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.5364487678626!2d-97.08400099999999!3d49.842295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52ea770cf966a69f%3A0xecce3ace54b75445!2s429%20Beaverhill%20Blvd%2C%20Winnipeg%2C%20MB%20R2J%204G1!5e0!3m2!1sen!2sca!4v1735760000000!5m2!1sen!2sca">
+                    </iframe>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="footer">
+        Update this page with your real date, time, address, RSVP &amp; registry links.
+    </div>
+</div>
+</body>
+</html>
