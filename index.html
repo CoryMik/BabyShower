@@ -368,20 +368,20 @@
 <script>
     // Read the URL parameter "slot"
     const params = new URLSearchParams(window.location.search);
-    const slot = params.get("time");
+    const t = params.get("t");
 
     // Time display element
     const timeEl = document.getElementById("time-slot");
 
     // Define the two time windows
     const times = {
-        friends: "1:00 PM – 3:00 PM",
-        family: "3:00 PM – 5:00 PM"
+        1: "1:00 PM – 3:00 PM",
+        2: "3:00 PM – 5:00 PM"
     };
 
     // Apply logic
-    if (slot && times[slot]) {
-        timeEl.textContent = times[slot];
+    if (t && times[t]) {
+        timeEl.textContent = times[t];
     } else {
         // Optional: set a default when no valid parameter is present
         timeEl.textContent = "1:00 PM – 5:00 PM";
