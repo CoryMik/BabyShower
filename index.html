@@ -282,7 +282,7 @@
                 <div class="section-title">When</div>
                 <div class="section-body">
                     <p class="datetime-main">Sunday January 11, 2026</p>
-                    <p class="datetime-sub">Drop in anytime between <br>1:00 PM &amp; 5:00 PM</p>
+                    <p class="datetime-sub" id="time-slot">1:00 PM – 5:00 PM</p>
                 </div>
             </section>
 
@@ -362,5 +362,27 @@
         A Cory Codes Production
     </div>
 </div>
+<script>
+    // Read the URL parameter "slot"
+    const params = new URLSearchParams(window.location.search);
+    const slot = params.get("time");
+
+    // Time display element
+    const timeEl = document.getElementById("time-slot");
+
+    // Define the two time windows
+    const times = {
+        friends: "1:00 PM – 3:00 PM",
+        family: "3:00 PM – 5:00 PM"
+    };
+
+    // Apply logic
+    if (slot && times[slot]) {
+        timeEl.textContent = times[slot];
+    } else {
+        // Optional: set a default when no valid parameter is present
+        timeEl.textContent = "1:00 PM – 5:00 PM";
+    }
+</script>
 </body>
 </html>
